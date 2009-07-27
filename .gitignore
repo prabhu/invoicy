@@ -2,3 +2,4 @@
 invoicy.ipr
 invoicy.iws
 django
+*.pyc
