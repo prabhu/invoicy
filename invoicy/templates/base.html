@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=us-ascii"/>
+    <meta name="Robots" content="index,follow"/>
+    <meta name="Keywords" content="invoicy, invoice generation, create invoice" />
+    <script type="text/javascript" src="/scripts/jquery.tools.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+    <title>{% block title %}{% endblock %}</title>
+    {% block extrahead %}{% endblock %}
+</head>
+<body>
+<div id="head">
+    <div id="title">
+        <div id="titleText">Invoicy</div>
+        <div id="logoutbar">
+            {% block logoutbar %}{% endblock %}
+        </div>
+    </div>
+    <div id="menu">
+        {% block navtabs %}{% endblock %}
+    </div>
+</div>
+<div id="body_wrapper">
+    <div id="body">
+        <div id="split">
+            <div class="top"></div>
+            <div id="left">
+                <div class="content">
+                    {% block body_content %}
+                    {% endblock %}
+                </div>
+            </div>
+            <div id="right">
+                <div class="content">
+                    {% block right_menu1 %}
+                    {% endblock %}
+                    <hr/>
+                    {% block right_menu2 %}
+                    {% endblock %}
+                    <hr/>
+                    {% block right_menu3 %}
+                    {% endblock %}
+                </div>
+            </div>
+            <div class="clearer"></div>
+            <div class="bottom"></div>
+
+        </div>
+        <div class="clearer"></div>
+    </div>
+    <div class="clearer"></div>
+</div>
+<div id="end_body"></div>
+<div id="footer">
+    &copy; Copyright Prabhu.
+</div>
+
+</body>
+</html>

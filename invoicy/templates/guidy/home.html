@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome to invoicy{% endblock %}
+{% block logoutbar %}
+    {% if user.is_authenticated %}
+        Welcome <b>{{ user.username }}</b> | <a href="/logout/">Logout</a>
+    {% endif %}
+{% endblock %}
+{% block navtabs %}
+    {% if user.is_authenticated %}
+        <ul>
+            <li class="active">
+                <a href="/" title="Home">Home</a>
+            </li>
+            <li>
+                <a href="/exporty/" title="Invoices">Invoices</a>
+            </li>
+            <li>
+                <a href="/clienty/" title="Clients">Clients</a>
+            </li>
+            <li>
+                <a href="/settings/" title="Settings">Settings</a>
+            </li>
+        </ul>
+    {% else %}
+        <div>
+            <form action="/login/" method="POST" id="login-form">
+                <label for="id_username">Username:</label><input type="text" name="username" id="id_username">
+                <label for="id_password">Password:</label><input type="password" name="password" id="id_password">
+                <input type="submit" value="login" />
+            </form>
+            {% if invalid_user %}
+            <p class="messager">Invalid username or password. Please try again.</p>
+            {% endif %}
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block body_content %}
+<p class="headerText">Invoice - The way you want it!</p>
+
+<p>
+    <p class="gradientHeader">With invoicy you can</p>
+    <dl>
+        <dt>Create invoices for your clients</dt>
+        <dd>Spend your precious time doing your work not with invoice creation!</dd>
+        <dt>Create invoice templates</dt>
+        <dd>Create and re-use invoice templates. Lots of templates to get you started.</dd>
+        <dt>Easy reminders for generating invoices</dt>
+        <dd>Never forget to send your invoice again!</dd>
+        <dt>Much more ...</dt>
+        <dd>We are constantly improving invoicy. If you have any custom requests feel free to <a href="#">ask us</a>.</dd>
+    </dl>
+</p>
+
+{% endblock %}
+
+{% block right_menu1 %}
+    <h4>Navigation</h4>
+    <ul>
+        <li><a href="#">Demo</a></li>
+        <li><a href="#">Help</a></li>
+        <li><a href="#">About us</a></li>
+    </ul>
+{% endblock %}
+
+{% block right_menu2 %}
+    <h4>Words from customers</h4>
+    <h5>Company X</h5>Invoicy is easy yet powerful. We were previously using Microsoft word and exporting pdfs manually <a href="#">More</a>
+{% endblock %}
+
+{% block right_menu3 %}
+    <h4>Open source</h4>
+    <p>We know that not everyone would be comfortable with online apps. You can download opensource version of invoicy from <a href="#">here</a>.</p>
+{% endblock %}
