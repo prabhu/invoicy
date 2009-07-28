@@ -19,21 +19,20 @@ DATABASE_PORT = ''             # Set to empty string for default. Not used with 
 
 TIME_ZONE = 'Europe/London'
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en-gb'
 
 SITE_ID = 1
 
 USE_I18N = True
 
-MEDIA_ROOT = os.path.normpath(os.path.join(os.path.dirname(__file__),
-'media'))
+MEDIA_ROOT = os.path.normpath(os.path.join(os.path.dirname(__file__), 'media'))
 
 MEDIA_URL = ''
 
 ADMIN_MEDIA_PREFIX = '/media/'
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'bjmw%v6nb2fg14k*(ri=_igz29z5ek%w8qp)(l2i-*scl6bf*j'
+SECRET_KEY = ''
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -64,5 +63,12 @@ INSTALLED_APPS = (
     'invoicy.clienty',
 )
 
-LOGIN_URL = '/login'
-LOGIN_REDIRECT_URL = '/guidy'
+LOGIN_URL = '/'
+LOGIN_REDIRECT_URL = '/guidy/'
+URL_PREFIX = 'invoicy/'
+
+# Import any private settings.
+try:
+    from localsettings import *
+except:
+    pass

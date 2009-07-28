@@ -3,3 +3,4 @@ invoicy.ipr
 invoicy.iws
 django
 *.pyc
+*.tar.gz
