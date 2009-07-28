@@ -1,12 +1,11 @@
 from django.conf.urls.defaults import *
-from invoicy.guidy.views import guidy_default, guidy_home, guidy_login, guidy_logout
 from django.conf import settings
 
-urlpatterns = patterns('',
-    (r'^$', guidy_default),
-    (r'^login/$', guidy_login),
-    (r'^logout/$', guidy_logout),
-    (r'^guidy/$', guidy_home),
+urlpatterns = patterns('invoicy.guidy.views',
+    url(r'^$', 'guidy_default', name='guidy-default'),
+    url(r'^login/$', 'guidy_login', name='guidy-login'),
+    url(r'^logout/$', 'guidy_logout', name='guidy-logout'),
+    url(r'^guidy/$', 'guidy_home', name='guidy-home'),
 )
 
 if settings.DEBUG:

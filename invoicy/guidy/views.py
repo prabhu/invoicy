@@ -12,7 +12,7 @@ def guidy_default(request):
     """
     user = request.user
     if user and user.is_authenticated():
-        return redirect(reverse('invoicy.guidy.views.guidy_home'))
+        return redirect(reverse('guidy-home'))
     else:
         return render_to_response('guidy/default.html', {},
                                   context_instance=RequestContext(request))
@@ -41,7 +41,7 @@ def guidy_login(request):
         redirect_url = '?r=' + redirect_url
 
     if request.method == 'GET':
-        return redirect(reverse('invoicy.guidy.views.guidy_default'))
+        return redirect(reverse('guidy-default'))
         
     username = request.POST.get('username', None)
     password = request.POST.get('password', None)
@@ -56,7 +56,7 @@ def guidy_login(request):
             if user.is_active:
                 login(request, user)
                 # Redirect to a success page.
-                return redirect(reverse('invoicy.guidy.views.guidy_home'))
+                return redirect(reverse('guidy-home'))
             else:
                 # Return a 'disabled account' error message
                 invalid_user = True
@@ -73,5 +73,5 @@ def guidy_logout(request):
     Handles logout.
     """
     logout(request)
-    return redirect(reverse('invoicy.guidy.views.guidy_default'))
+    return redirect(reverse('guidy-default'))
    

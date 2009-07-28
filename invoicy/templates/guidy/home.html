@@ -1,35 +1,6 @@
 {% extends "guidy/default.html" %}
 
 {% block title %}Welcome to guidy{% endblock %}
-{% block navtabs %}
-    {% if user.is_authenticated %}
-        <ul>
-            <li class="active">
-                <a href="/guidy/" title="home">home</a>
-            </li>
-            <li>
-                <a href="/exporty/" title="invoices">invoices</a>
-            </li>
-            <li>
-                <a href="/clienty/" title="clients">clients</a>
-            </li>
-            <li>
-                <a href="/settings/" title="settings">settings</a>
-            </li>
-        </ul>
-    {% else %}
-        <div>
-            <form action="/login/" method="POST" id="login-form">
-                <label for="id_username">username:</label><input type="text" name="username" id="id_username">
-                <label for="id_password">password:</label><input type="password" name="password" id="id_password">
-                <input type="submit" value="login"/>
-            </form>
-            {% if invalid_user %}
-            <p class="messager">Invalid username or password. Please try again.</p>
-            {% endif %}
-        </div>
-    {% endif %}
-{% endblock %}
 
 {% block body_content %}
 {% endblock %}
