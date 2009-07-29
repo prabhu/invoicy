@@ -4,3 +4,6 @@ invoicy.iws
 django
 *.pyc
 *.tar.gz
+build.sh
+nginx
+manage

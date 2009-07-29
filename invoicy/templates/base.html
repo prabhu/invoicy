@@ -24,8 +24,11 @@
 </div>
 <div id="body_wrapper">
     <div id="body">
+        {% block body_split %}
         <div id="split">
+        {% endblock %}
             <div class="top"></div>
+            {% block body_all_content %}
             <div id="left">
                 <div class="content">
                     {% block body_content %}
@@ -36,14 +39,13 @@
                 <div class="content">
                     {% block right_menu1 %}
                     {% endblock %}
-                    <hr/>
                     {% block right_menu2 %}
                     {% endblock %}
-                    <hr/>
                     {% block right_menu3 %}
                     {% endblock %}
                 </div>
             </div>
+            {% endblock %}
             <div class="clearer"></div>
             <div class="bottom"></div>
 

@@ -69,8 +69,11 @@ LOGIN_REDIRECT_URL = '/guidy/'
 # Prefix to use for all urls. Change this parameter if you would like use
 # invoicy under a different directory. For eg,
 # if you want to place invoicy inside myapps dir in your webserver - http://server.com/myapps
-# then set this variable as "myapps/" 
-URL_PREFIX = 'invoicy/'
+# then set this variable as "myapps/"
+# NOTE: Set FORCE_SCRIPT_NAME with the same value if things dont work.
+URL_PREFIX = ''
+
+FORCE_SCRIPT_NAME = ''
 
 # Import any private settings.
 try:
