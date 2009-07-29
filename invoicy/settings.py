@@ -65,6 +65,11 @@ INSTALLED_APPS = (
 
 LOGIN_URL = '/'
 LOGIN_REDIRECT_URL = '/guidy/'
+
+# Prefix to use for all urls. Change this parameter if you would like use
+# invoicy under a different directory. For eg,
+# if you want to place invoicy inside myapps dir in your webserver - http://server.com/myapps
+# then set this variable as "myapps/" 
 URL_PREFIX = 'invoicy/'
 
 # Import any private settings.

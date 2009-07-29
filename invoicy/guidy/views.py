@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.template import RequestContext
 from django.core.urlresolvers import reverse
 
-def guidy_default(request):
+def guidy_default(request, **args):
     """
     Handle request to the home page of invoicy before login.
     """
@@ -14,18 +14,18 @@ def guidy_default(request):
     if user and user.is_authenticated():
         return redirect(reverse('guidy-home'))
     else:
-        return render_to_response('guidy/default.html', {},
+        return render_to_response('guidy/default.html', args,
                                   context_instance=RequestContext(request))
 
 @login_required(redirect_field_name='r')
-def guidy_home(request):
+def guidy_home(request, **args):
     """
     Handle request to the home page after login.
     """    
-    return render_to_response('guidy/home.html', {},
+    return render_to_response('guidy/home.html', args,
                               context_instance=RequestContext(request))
     
-def guidy_login(request):
+def guidy_login(request, **args):
     """
     Handle login request
     """
@@ -63,12 +63,13 @@ def guidy_login(request):
                 reason = 'account_disabled'
         else:
             # Return an 'invalid login' error message.
-            invalid_user = True      
+            invalid_user = True
+        args.update({'invalid_user' : invalid_user, 'reason' : reason})
     return render_to_response('guidy/default.html',
-                              {'invalid_user' : invalid_user, 'reason' : reason},
+                              args,
                               context_instance=RequestContext(request))
     
-def guidy_logout(request):
+def guidy_logout(request, **args):
     """
     Handles logout.
     """
