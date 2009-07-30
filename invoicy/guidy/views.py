@@ -1,6 +1,5 @@
 from django.http import Http404, HttpResponse
 from django.shortcuts import render_to_response, get_object_or_404, redirect
-from django.utils import simplejson as json
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.template import RequestContext
@@ -14,7 +13,7 @@ def guidy_default(request, **args):
     if user and user.is_authenticated():
         return redirect(reverse('guidy-home'))
     else:
-        return render_to_response('guidy/default.html', args,
+        return render_to_response('default.html', args,
                                   context_instance=RequestContext(request))
 
 @login_required(redirect_field_name='r')
@@ -65,7 +64,7 @@ def guidy_login(request, **args):
             # Return an 'invalid login' error message.
             invalid_user = True
         args.update({'invalid_user' : invalid_user, 'reason' : reason})
-    return render_to_response('guidy/default.html',
+    return render_to_response('default.html',
                               args,
                               context_instance=RequestContext(request))
     

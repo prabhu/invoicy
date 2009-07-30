@@ -61,6 +61,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'invoicy.guidy',
     'invoicy.clienty',
+    'invoicy.common',
 )
 
 LOGIN_URL = '/'
