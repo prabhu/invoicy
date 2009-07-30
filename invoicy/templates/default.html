@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+        
 {% block title %}Welcome to invoicy{% endblock %}
 {% block logoutbar %}
     {% if user.is_authenticated %}
@@ -13,13 +13,13 @@
                 <a href="{% url guidy-home %}" title="home">home</a>
             </li>
             <li>
-                <a href="/exporty/" title="invoices">invoices</a>
+                <a href="exporty/" title="invoices">invoices</a>
             </li>
             <li>
-                <a href="/clienty/" title="clients">clients</a>
+                <a href="{% url clienty-home %}" title="clients">clients</a>
             </li>
             <li>
-                <a href="/settings/" title="settings">settings</a>
+                <a href="settings/" title="settings">settings</a>
             </li>
         </ul>
     {% else %}

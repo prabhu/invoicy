@@ -4,13 +4,16 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=us-ascii"/>
     <meta name="Robots" content="index,follow"/>
-    <meta name="Keywords" content="invoicy, invoice generation, create invoice" />
     <script type="text/javascript" src="/scripts/jquery-1.3.2.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+    <!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="/css/ie.css" /><![endif]-->
+    {% block extrastyle %}{% endblock %}
     <title>{% block title %}{% endblock %}</title>
     {% block extrahead %}{% endblock %}
+    {% block blockbots %}<meta name="robots" content="index,follow" />{% endblock %}    
 </head>
 <body>
+{% if not is_popup %}
 <div id="head">
     <div id="title">
         <div id="titleText">Invoicy</div>
@@ -22,29 +25,43 @@
         {% block navtabs %}{% endblock %}
     </div>
 </div>
+{% endif %}
 <div id="body_wrapper">
     <div id="body">
         {% block body_split %}
-        <div id="split">
+            {% if not is_popup %}
+                <div id="split">
+            {% else %}
+                <div id="all">
+            {% endif %}
         {% endblock %}
             <div class="top"></div>
             {% block body_all_content %}
+            {% if not is_popup %}
             <div id="left">
-                <div class="content">
+                {% if messages %}
+                    <ul class="messagelist">{% for message in messages %}<li>{{ message }}</li>{% endfor %}</ul>
+                {% endif %}
+             {% endif %}
+                <div class="content {% block coltype %}{% endblock %}">
                     {% block body_content %}
                     {% endblock %}
                 </div>
+            {% if not is_popup %}    
             </div>
-            <div id="right">
-                <div class="content">
-                    {% block right_menu1 %}
-                    {% endblock %}
-                    {% block right_menu2 %}
-                    {% endblock %}
-                    {% block right_menu3 %}
-                    {% endblock %}
+            {% endif %}
+            {% if not is_popup %}
+                <div id="right">
+                    <div class="content">
+                        {% block right_menu1 %}
+                        {% endblock %}
+                        {% block right_menu2 %}
+                        {% endblock %}
+                        {% block right_menu3 %}
+                        {% endblock %}
+                    </div>
                 </div>
-            </div>
+            {% endif %}
             {% endblock %}
             <div class="clearer"></div>
             <div class="bottom"></div>
