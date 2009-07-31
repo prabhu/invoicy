@@ -45,6 +45,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'invoicy.common.utils.middleware.ThreadLocalsMiddleware'
 )
 
 ROOT_URLCONF = 'invoicy.urls'

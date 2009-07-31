@@ -8,11 +8,12 @@ urlpatterns = patterns('guidy.views',
     url(r'^logout/$', 'guidy_logout', name='guidy-logout'),
     url(r'^guidy/$', 'guidy_home', name='guidy-home'),
     url(r'^admin/$', 'guidy_home', name='admin-home'),
-
+    url(r'^admin/login/$', 'guidy_login', name='guidy-login'),
+    url(r'^admin/logout/$', 'guidy_logout', name='guidy-logout'),
 )
 
 # Handle admin urls belonging to each app.
 urlpatterns += patterns('clienty.views',
-    url(r'^admin/clienty/$', 'clienty_home', name='clienty-admin-home'),                        
+    url(r'^admin/clienty/$', 'clienty_home', name='clienty-admin-home'),
 )
     

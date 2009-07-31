@@ -5,7 +5,7 @@ from django.contrib.auth.models import User, Group, Permission
 
 # Decorators specific to invoicy
 
-def data_required(model=None, mincount=1, failure_view=None):
+def data_required(model=None, mincount=1, failure_view=None, filter_cond=None, user_filter=False):
     """
     Decorator which checks the given model for the minimum number of rows.
     If the models has lesser rows, then we will redirect to the failure_view.
@@ -15,7 +15,16 @@ def data_required(model=None, mincount=1, failure_view=None):
         def _dec(request, *args, **kw_args):
             if not model or not failure_view:
                 raise AttributeError("Decorator requires both model and failure_view")
-            if model.objects.count() < mincount:
+            count = 0
+            rows = None
+            if filter_cond:
+                rows = model.objects.filter(**filter_cond)
+            else:
+                rows = model.objects.all()
+            if user_filter:
+                rows = rows.filter(user=request.user)
+            count = rows.count()   
+            if count < mincount:
                 # See if you can reverse map the url.
                 # There will be hardly any performance impact since django
                 # maintains a map of views to viewresolves anyway.

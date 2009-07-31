@@ -334,6 +334,7 @@ hr {
     border: 0px;
     border-bottom: 1px #F0EBE7 dashed;
     height: 1px;
+    margin: 10px 0px 10px 0px;
 }
 
 #left hr, #all hr {
