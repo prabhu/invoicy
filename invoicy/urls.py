@@ -15,10 +15,10 @@ except:
 urlpatterns = patterns('',
     (r'^' + urlprefix, include('guidy.urls')),
     (r'^clienty/' + urlprefix, include('clienty.urls')),
+    (r'^' + urlprefix + 'admin/', include(admin.site.urls)),
 )
 
 if settings.DEBUG:
     urlpatterns += patterns('',
-        (r'^' + urlprefix + 'admin/', include(admin.site.urls)),
         (r'^(?P<path>(?:images|scripts|css|openlayers).*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
     )
