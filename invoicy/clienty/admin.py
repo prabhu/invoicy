@@ -4,6 +4,7 @@ from clienty.models import Client, Contact
 class ClientAdmin(admin.ModelAdmin):
     list_display = ('ref', 'short_name', 'name', 'phone')
     list_display_links = ('ref', 'short_name', 'name')
+    search_fields = ['ref', 'name', 'short_name']
     fieldsets = (
         (None, {
             'fields' : ('ref', 'short_name', 'name')
