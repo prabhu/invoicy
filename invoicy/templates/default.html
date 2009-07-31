@@ -1,6 +1,28 @@
 {% extends "base.html" %}
-        
+
 {% block title %}Welcome to invoicy{% endblock %}
+{% block extrahead %}
+    <script type="text/javascript">
+        function register() {
+            $("#login-form").submit();
+        }
+        $(function() {            
+            $("#login-form").submit(function() {
+                var username = $("#id_username");
+                var password = $("#id_password");
+                if (username.val() == "") {
+                    username.focus();
+                    return false;
+                }
+                if (password.val() == "") {
+                    password.focus();
+                    return false;
+                }
+                return true;
+            });
+        });
+    </script>
+{% endblock %}
 {% block logoutbar %}
     {% if user.is_authenticated %}
         welcome <b>{{ user.username }}</b> | <a href="{% url guidy-logout %}">logout</a>
@@ -25,13 +47,22 @@
     {% else %}
         <div>
             <form action="{% url guidy-login %}" method="POST" id="login-form">
-                <label for="id_username">username:</label><input type="text" name="username" id="id_username">
-                <label for="id_password">password:</label><input type="password" name="password" id="id_password">
+                <label for="id_username">username:</label><input type="text" name="username" id="id_username" value="{{ username }}" />
+                <label for="id_password">password:</label><input type="password" name="password" id="id_password" value="{{ password }}" />
+                {% if register_allowed %}
+                    <input type="hidden" name="register" value="1"/>
+                {% else %}
+                    <input type="hidden" name="register" value="0"/>
+                {% endif %}
                 <input type="submit" value="login"/>
             </form>
-            {% if invalid_user %}
+            {% if register_allowed %}
+            <p class="messageg">This username is available. Would you like to <a href="javascript:register()">register</a> instead?</p>
+            {% endif %}
+            {% if not register_allowed and invalid_user %}
             <p class="messager">Invalid username or password. Please try again.</p>
             {% endif %}
+            
         </div>
     {% endif %}
 {% endblock %}

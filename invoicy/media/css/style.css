@@ -459,6 +459,11 @@ blockquote[cite]:after {
     padding-right: 1em;
 }
 
+.messageg {
+    color: #000;
+    float: right;    
+}
+
 .messager {
     color: #FA0000;
     float: right;
