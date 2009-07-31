@@ -6,6 +6,11 @@
         function register() {
             $("#login-form").submit();
         }
+        function doRegister() {
+            obj = $("#id_submit");
+            $("#id_submit").val("register");
+            $("#id_register").val("1");
+        }
         $(function() {            
             $("#login-form").submit(function() {
                 var username = $("#id_username");
@@ -50,19 +55,21 @@
                 <label for="id_username">username:</label><input type="text" name="username" id="id_username" value="{{ username }}" />
                 <label for="id_password">password:</label><input type="password" name="password" id="id_password" value="{{ password }}" />
                 {% if register_allowed %}
-                    <input type="hidden" name="register" value="1"/>
+                    <input type="hidden" name="register" id="id_register" value="1"/>
                 {% else %}
-                    <input type="hidden" name="register" value="0"/>
+                    <input type="hidden" name="register" id="id_register" value="0"/>
                 {% endif %}
-                <input type="submit" value="login"/>
+                <input type="submit" id="id_submit" value="login"/>
             </form>
             {% if register_allowed %}
-            <p class="messageg">This username is available. Would you like to <a href="javascript:register()">register</a> instead?</p>
+                <p class="messageg">This username is available. Would you like to <a href="javascript:register()">register</a> instead?</p>
             {% endif %}
             {% if not register_allowed and invalid_user %}
-            <p class="messager">Invalid username or password. Please try again.</p>
+                <p class="messager">Invalid username or password. Please try again.</p>
             {% endif %}
-            
+            {% if not register_allowed and not invalid_user %}
+                <p class="messageg"><a href="javascript:doRegister()">Register</a></p>
+            {% endif %}
         </div>
     {% endif %}
 {% endblock %}

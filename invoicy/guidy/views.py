@@ -65,7 +65,10 @@ def guidy_login(request, **args):
     password = request.POST.get('password', None)
     register = request.POST.get('register', '0')
     if register == '1':
-        create_user(username, password)
+        try:
+            user = User.objects.get(username=username)
+        except User.DoesNotExist:   
+            create_user(username, password)
         
     invalid_user = False
     register_allowed = False
