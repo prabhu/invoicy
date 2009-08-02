@@ -6,7 +6,8 @@ from django.contrib.auth.models import User, Group, Permission
 from django.template import RequestContext
 from django.core.urlresolvers import reverse
 
-from common.utils.decorators import group_required
+from common.utils.decorators import group_required, data_required
+from clienty.models import OwnCompany
 
 def guidy_default(request, **args):
     """
@@ -20,6 +21,7 @@ def guidy_default(request, **args):
                                   context_instance=RequestContext(request))
 
 @login_required(redirect_field_name='r')
+@data_required(model=OwnCompany, failure_view='/admin/clienty/owncompany/add/', user_filter=True)
 def guidy_home(request, **args):
     """
     Handle request to the home page after login.
@@ -27,7 +29,7 @@ def guidy_home(request, **args):
     return render_to_response('guidy/home.html', args,
                               context_instance=RequestContext(request))
 
-@group_required(name = 'invoicy_users', models_list=['client', 'contact'], permission_list=['add', 'change', 'delete'])
+@group_required(name = 'invoicy_users', models_list=['client', 'contact', 'owncompany', 'invoicetemplate'], permission_list=['add', 'change', 'delete'])
 def create_user(username, password):
     """
     Method to create a user with proper permissions

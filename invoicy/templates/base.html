@@ -7,9 +7,9 @@
     {% block extrastyle %}{% endblock %}
     <!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="{% block stylesheet_ie %}{% load adminmedia %}{% admin_media_prefix %}css/ie.css{% endblock %}" /><![endif]-->
     {% if LANGUAGE_BIDI %}<link rel="stylesheet" type="text/css" href="{% block stylesheet_rtl %}{% admin_media_prefix %}css/rtl.css{% endblock %}" />{% endif %}
+    {% block extrahead %}{% endblock %}
     <link rel="stylesheet" type="text/css" href="/css/style.css"/>
     <title>{% block title %}{% endblock %}</title>
-    {% block extrahead %}{% endblock %}
     {% block blockbots %}<meta name="robots" content="index,follow" />{% endblock %}    
 </head>
 <body>
@@ -29,7 +29,7 @@
 <div id="body_wrapper">
     <div id="body">
         {% block body_split %}
-            {% if not is_popup %}
+            {% if not is_popup and not newuser %}
                 <div id="split">
             {% else %}
                 <div id="all">
@@ -37,23 +37,23 @@
         {% endblock %}
             <div class="top"></div>
             {% block body_all_content %}
-            {% if not is_popup %}
+            {% if not is_popup and not newuser %}
             <div id="left">
-                {% if messages %}
-                    <ul class="messagelist">{% for message in messages %}<li>{{ message }}</li>{% endfor %}</ul>
-                {% endif %}
              {% endif %}
                 <div class="content {% block coltype %}{% endblock %}">
+                    {% if messages %}
+                        <ul class="messagelist">{% for message in messages %}<li>{{ message }}</li>{% endfor %}</ul>
+                    {% endif %}
                     {% block pretitle %}{% endblock %}
                     {% block content_title %}{% if title %}<h1>{{ title }}</h1>{% endif %}{% endblock %}
                     {% block content %}
                     {% block object-tools %}{% endblock %}
                     {% endblock %}
                 </div>
-            {% if not is_popup %}    
+            {% if not is_popup and not newuser %}    
             </div>
             {% endif %}
-            {% if not is_popup %}
+            {% if not is_popup and not newuser %}
                 <div id="right">
                     <div class="content">
                         {% block right_menu1 %}

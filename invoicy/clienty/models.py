@@ -14,12 +14,13 @@ class Client(models.Model):
     addr3 = models.CharField(max_length=45, null=True, blank=True, verbose_name="Address Line 3")
     postcode = models.CharField(max_length=9)
     city = models.CharField(max_length=45, null=True, blank=True)
-    state = models.CharField(max_length=45, verbose_name="State/County")
+    state = models.CharField(max_length=45, verbose_name="State/County", null=True, blank=True)
     country = models.CharField(max_length=45, verbose_name="Country", default="United Kingdom")
     website = models.URLField(null=True, verify_exists=True, max_length=100, verbose_name="Website", blank=True)
-    phone = models.CharField(max_length=25)
+    phone = models.CharField(max_length=25, null=True, blank=True)
     fax = models.CharField(max_length=25, null=True, blank=True)
     user = models.ForeignKey(User, help_text="Owner user")
+    own_company = models.BooleanField(verbose_name="Own Company", help_text="Is this your own company?")
 
     def __unicode__(self):
         return u'%s %s' %(self.ref, self.name)
@@ -57,3 +58,11 @@ class Contact(models.Model):
         if user:
             self.user = user
         super(Contact, self).save(args)
+
+class OwnCompany(Client):
+    """
+    Proxy model representing your own company.
+    """
+    class Meta:
+        proxy = True
+        

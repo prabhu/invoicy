@@ -4,12 +4,16 @@ from django.core.urlresolvers import NoReverseMatch
 from django.contrib.auth.models import User, Group, Permission
 
 # Decorators specific to invoicy
-
 def data_required(model=None, mincount=1, failure_view=None, filter_cond=None, user_filter=False):
     """
     Decorator which checks the given model for the minimum number of rows.
     If the models has lesser rows, then we will redirect to the failure_view.
     Otherwise we direct to the original view upon success.
+    
+    Eg from guidy/views.py:
+    @data_required(model=OwnCompany, failure_view='/admin/clienty/owncompany/add/', user_filter=True)
+    This would check the model OwnCompany for rows created by the current user. If not it will
+    redirect to add screen with an additional session property OwnCompanyRequired.    
     """
     def decorate(view_func):
         def _dec(request, *args, **kw_args):
@@ -21,15 +25,20 @@ def data_required(model=None, mincount=1, failure_view=None, filter_cond=None, u
                 rows = model.objects.filter(**filter_cond)
             else:
                 rows = model.objects.all()
-            if user_filter:
+            if user_filter and not request.user.is_superuser:
                 rows = rows.filter(user=request.user)
-            count = rows.count()   
+            count = rows.count()
+
             if count < mincount:
+                # Store the additional session argument in session. This will be used
+                # by the workflow engine to decide on the next step.
+                request.session[model._meta.object_name + "Required"] = True
+                
                 # See if you can reverse map the url.
                 # There will be hardly any performance impact since django
                 # maintains a map of views to viewresolves anyway.
                 try:
-                    return reverse(failure_view)
+                    return redirect(reverse(failure_view))
                 except NoReverseMatch:
                     return redirect(failure_view)
             return view_func(request, *args, **kw_args)
@@ -53,7 +62,6 @@ def group_required(name=None, models_list=None, permission_list=None):
                 # Save and re-load in-order to get the primary key.
                 # Otherwise you cant have many-to-many relationship.
                 group.save()
-                group = Group.objects.get(name=name)
                 codename_list = [perm + '_' + model for model in models_list for perm in permission_list]
                 permissions = Permission.objects.filter(codename__in = codename_list)
                 group.permissions = permissions
