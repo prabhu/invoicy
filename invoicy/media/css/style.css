@@ -366,6 +366,11 @@ input, textarea, select {
     padding: 2px;
 }
 
+.template_editor {
+    width: 465px;
+    height: 400px;
+}
+
 blockquote {
     margin: 5px;
     background: transparent url(../images/quotes.png) left top no-repeat;
@@ -501,4 +506,11 @@ blockquote[cite]:after {
 #logoutbar a {
     color: #000;
     text-decoration: none;
+}
+
+div.message {
+    background: #ffc;
+    margin: 10px;
+    padding: 6px 8px;
+    font-size: 12px;
 }

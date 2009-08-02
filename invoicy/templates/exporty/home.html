@@ -1,0 +1,37 @@
+{% extends "default.html" %}
+{% block title %}Welcome to exporty{% endblock %}
+
+{% block navtabs %}
+    <ul>
+        <li>
+            <a href="{% url guidy-home %}" title="home">home</a>
+        </li>
+        <li class="active">
+            <a href="{% url exporty-home %}" title="invoices">invoices</a>
+        </li>
+        <li>
+            <a href="{% url clienty-home %}" title="clients">clients</a>
+        </li>
+        <li>
+            <a href="settings/" title="settings">settings</a>
+        </li>
+    </ul>
+{% endblock %}
+
+{% block content %}
+{% endblock %}
+
+{% block right_menu1 %}
+    <h4>quick links</h4>
+    <ul>
+        <li><a href="/admin/exporty/invoice/add/">create invoice</a></li>
+        <li><a href="/admin/exporty/invoicetemplate/">invoice templates</a></li>
+        <li><a href="/admin/exporty/invoice/">all invoices</a></li>
+    </ul>
+{% endblock %}
+
+{% block right_menu2 %}
+{% endblock %}
+
+{% block right_menu3 %}
+{% endblock %}

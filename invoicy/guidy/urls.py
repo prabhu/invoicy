@@ -16,4 +16,8 @@ urlpatterns = patterns('guidy.views',
 urlpatterns += patterns('clienty.views',
     url(r'^admin/clienty/$', 'clienty_home', name='clienty-admin-home'),
 )
-    
+
+# Handle admin urls belonging to each app.
+urlpatterns += patterns('exporty.views',
+    url(r'^admin/exporty/$', 'exporty_home', name='exporty-admin-home'),
+)
