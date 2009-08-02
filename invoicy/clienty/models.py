@@ -65,4 +65,6 @@ class OwnCompany(Client):
     """
     class Meta:
         proxy = True
+        verbose_name = 'My company'
+        verbose_name_plural = 'My company'
         

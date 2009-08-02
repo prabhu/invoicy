@@ -15,6 +15,7 @@ urlpatterns = patterns('guidy.views',
 # Handle admin urls belonging to each app.
 urlpatterns += patterns('clienty.views',
     url(r'^admin/clienty/$', 'clienty_home', name='clienty-admin-home'),
+    url(r'^admin/clienty/owncompany/$', 'clienty_home', name='clienty-admin-home'),
 )
 
 # Handle admin urls belonging to each app.

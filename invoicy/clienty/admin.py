@@ -56,9 +56,8 @@ class ContactAdmin(admin.ModelAdmin):
         obj.save()
 
 class OwnCompanyAdmin(admin.ModelAdmin):
-
-    verbose_name = 'My Company'
-    verbose_name_plural = 'My Company'
+    list_display = ('short_name', 'name',)
+    list_display_links = ('short_name', 'name',)    
     exclude = ('user', 'own_company', 'ref')
     
     def queryset(self, request):
@@ -67,7 +66,7 @@ class OwnCompanyAdmin(admin.ModelAdmin):
         """
         if request.user.is_superuser:
             return OwnCompany.objects.all()
-        return OwnCompany.objects.filter(user=request.user)
+        return OwnCompany.objects.filter(user=request.user, own_company=True)
 
     def save_model(self, request, obj, form, change):
         """
@@ -75,8 +74,8 @@ class OwnCompanyAdmin(admin.ModelAdmin):
         """
         if request.user:
             obj.user = request.user
-        # Own company would have username as ref.    
-        obj.ref = request.user.username
+        # Own company would have username + name as ref.    
+        obj.ref = request.user.username + '-' + obj.name
         obj.own_company = True
         obj.save()
 

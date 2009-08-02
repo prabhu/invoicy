@@ -30,22 +30,22 @@
 {% endblock %}
 {% block logoutbar %}
     {% if user.is_authenticated %}
-        welcome <b>{{ user.username }}</b> | <a href="{% url guidy-logout %}">logout</a>
+        welcome <b>{% firstof user.first_name user.username %}</b> | <a href="{% url guidy-logout %}">logout</a>
     {% endif %}
 {% endblock %}
 {% block navtabs %}
     {% if user.is_authenticated %}
         <ul>
-            <li class="active">
+            <li {% ifequal tab_name "guidy" %} class='active'{% endifequal %}>
                 <a href="{% url guidy-home %}" title="home">home</a>
             </li>
-            <li>
+            <li {% ifequal tab_name "exporty" %} class='active'{% endifequal %}>
                 <a href="{% url exporty-home %}" title="invoices">invoices</a>
             </li>
-            <li>
+            <li {% ifequal tab_name "clienty" %} class='active'{% endifequal %}>
                 <a href="{% url clienty-home %}" title="clients">clients</a>
             </li>
-            <li>
+            <li {% ifequal tab_name "settings" %} class='active'{% endifequal %}>
                 <a href="settings/" title="settings">settings</a>
             </li>
         </ul>

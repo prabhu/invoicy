@@ -11,7 +11,7 @@ from exporty.models import InvoiceTemplate
 
 @login_required(redirect_field_name='r')
 @data_required(model=OwnCompany, failure_view='/admin/clienty/owncompany/add/', user_filter=True)
-@data_required(model=InvoiceTemplate, failure_view='/admin/exporty/invoicetemplate/add/', user_filter=True)
+@data_required(model=InvoiceTemplate, failure_view='/admin/exporty/invoicetemplate/add/', user_filter=False)
 def exporty_home(request, **args):
     """
     Default page in exporty tab.

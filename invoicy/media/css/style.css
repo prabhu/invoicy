@@ -164,6 +164,13 @@ body {
     border: 0px;
 }
 
+#right ul a.current_link {
+    color: #000;
+    text-transform: bold;
+    font-size: 16px;
+    margin: 0px 0px 3px -2px;
+}
+
 #right ul a:hover {
     color: #FFFFFF;
     background: #7f8d96;

@@ -23,13 +23,17 @@
     
 <form {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ form_url }}" method="post" id="{{ opts.module_name }}_form">
 {% block form_top %}
-	{% if newuser %}
-		{% ifequal workflow "OwnCompanyAdd" %}
+	{% ifequal workflow "OwnCompanyRequired" %}
 		<div class="message">
-		<p>Hi {{ user.username }}!</p><p>Before you begin creating wonderful invoices, let us know about your company first. You can change these details anytime from the settings menu.</p>
+			<p>Hi {% firstof user.first_name user.username %}!</p><p>Before you begin creating wonderful invoices, let us know about your company first. You can change these details anytime from the settings menu.</p>
 		</div>
-		{% endifequal %}
-	{% endif %}
+	{% endifequal %}
+	
+	{% ifequal workflow "ClientRequired" %}
+		<div class="message">
+			<p>Hi {% firstof user.first_name user.username %}!</p><p>Use this form to add your first client to the system. Adding clients will make your life easier while generating invoices.</p>
+		</div>
+	{% endifequal %}	
 {% endblock %}
 <div>
 {% if is_popup %}<input type="hidden" name="_popup" value="1" />{% endif %}

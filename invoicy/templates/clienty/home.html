@@ -1,31 +1,14 @@
 {% extends "default.html" %}
 {% block title %}Welcome to clienty{% endblock %}
 
-{% block navtabs %}
-    <ul>
-        <li>
-            <a href="{% url guidy-home %}" title="home">home</a>
-        </li>
-        <li>
-            <a href="{% url exporty-home %}" title="invoices">invoices</a>
-        </li>
-        <li class="active">
-            <a href="{% url clienty-home %}" title="clients">clients</a>
-        </li>
-        <li>
-            <a href="settings/" title="settings">settings</a>
-        </li>
-    </ul>
-{% endblock %}
-
 {% block content %}
 {% endblock %}
 
 {% block right_menu1 %}
     <h4>quick links</h4>
     <ul>
-        <li><a href="/admin/clienty/client/add/">add client</a></li>
-        <li><a href="/admin/clienty/contact/add/">add contact</a></li>
+        <li><a href="/admin/clienty/client/add/" {% ifequal title "Add client" %} class='current_link'{% endifequal %}>add client</a></li>
+        <li><a href="/admin/clienty/contact/add/" {% ifequal title "Add contact" %} class='current_link'{% endifequal %}>add contact</a></li>
         <li><a href="#">past invoices</a></li>
         <li><a href="#">reports</a></li>
     </ul>
