@@ -22,11 +22,11 @@ def workflow_processor(request):
     # Find if the user is new. 
     # FIXME: User is new if he has no own company.
     user = request.user
-    if user and not user.is_superuser and not user.is_anonymous:
-        count = OwnCompany.objects.filter(user=user).count()
+    if user and not user.is_superuser and not user.is_anonymous():
+        count = OwnCompany.objects.filter(user=user, own_company=True).count()
         if not count:
             ret_args.update({'newuser' : True})
-    
+                                    
     # Find tab_name
     tab_name = 'guidy'
     for tab in tabs_list:
