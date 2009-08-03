@@ -79,8 +79,6 @@ def rate_limit(time=60):
     """
     def decorate(view_func):
         def _dec(request, *args, **kw_args):
-            print request
-            print dir(request)
             ip = request.META['REMOTE_ADDR']
             val = cache.get(ip)
             if not val:
