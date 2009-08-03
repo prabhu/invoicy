@@ -5,8 +5,9 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User, Group, Permission
 from django.template import RequestContext
 from django.core.urlresolvers import reverse
+from django.views.decorators.cache import cache_page
 
-from common.utils.decorators import group_required, data_required
+from common.utils.decorators import group_create, data_required, rate_limit
 from clienty.models import OwnCompany
 
 def guidy_default(request, **args):
@@ -29,8 +30,9 @@ def guidy_home(request, **args):
     return render_to_response('guidy/home.html', args,
                               context_instance=RequestContext(request))
 
-@group_required(name = 'invoicy_users', models_list=['client', 'contact', 'owncompany', 'invoicetemplate'], permission_list=['add', 'change', 'delete'])
-def create_user(username, password):
+@rate_limit(time=180)
+@group_create(name = 'invoicy_users', models_list=['client', 'contact', 'owncompany', 'invoicetemplate'], permission_list=['add', 'change', 'delete'])
+def create_user(request, username, password):
     """
     Method to create a user with proper permissions
     """
@@ -44,7 +46,8 @@ def create_user(username, password):
         user.save()
     except Group.DoesNotExist:
         print "Group invoicy_users does not exist!"
-
+    return None
+    
 def guidy_login(request, **args):
     """
     Handle login request
@@ -70,8 +73,10 @@ def guidy_login(request, **args):
         try:
             user = User.objects.get(username=username)
         except User.DoesNotExist:   
-            create_user(username, password)
-        
+            redirect_url = create_user(request, username, password)
+            if redirect_url:
+                return redirect_url
+                
     invalid_user = False
     register_allowed = False
     reason = None

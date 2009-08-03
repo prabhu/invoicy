@@ -54,7 +54,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'invoicy.common.utils.middleware.ThreadLocalsMiddleware'
+    'invoicy.common.utils.middleware.ThreadLocalsMiddleware',
 )
 
 ROOT_URLCONF = 'invoicy.urls'
@@ -86,6 +86,9 @@ LOGIN_REDIRECT_URL = '/guidy/'
 URL_PREFIX = ''
 
 FORCE_SCRIPT_NAME = ''
+
+# Caching configs.
+CACHE_BACKEND = 'locmem:///'
 
 # Import any private settings.
 try:

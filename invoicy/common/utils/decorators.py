@@ -2,6 +2,7 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
 from django.core.urlresolvers import NoReverseMatch
 from django.contrib.auth.models import User, Group, Permission
+from django.core.cache import cache
 
 # Decorators specific to invoicy
 def data_required(model=None, mincount=1, failure_view=None, filter_cond=None, user_filter=False):
@@ -45,7 +46,7 @@ def data_required(model=None, mincount=1, failure_view=None, filter_cond=None, u
         return _dec   
     return decorate
 
-def group_required(name=None, models_list=None, permission_list=None):
+def group_create(name=None, models_list=None, permission_list=None):
     """
     Decorator to create a group for the given name. By default sets read, change, delete
     for the specified models.
@@ -70,4 +71,24 @@ def group_required(name=None, models_list=None, permission_list=None):
             return view_func(request, *args, **kw_args)
         return _dec
     return decorate
-    
+
+def rate_limit(time=60):
+    """
+    Decorator to limit the request rate. Redirects with a forbidden error code.
+    Primarily used for fighting spams during registeration. No need for captcha hence. 
+    """
+    def decorate(view_func):
+        def _dec(request, *args, **kw_args):
+            print request
+            print dir(request)
+            ip = request.META['REMOTE_ADDR']
+            val = cache.get(ip)
+            if not val:
+                cache.set(ip, "1", time)
+                return view_func(request, *args, **kw_args)
+            else:
+                from django.http import HttpResponseForbidden
+                return HttpResponseForbidden('Rate limit exceeded. Please wait for ' + str(time) + ' seconds')
+        return _dec
+    return decorate
+        

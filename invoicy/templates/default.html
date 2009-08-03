@@ -75,24 +75,25 @@
 {% endblock %}
 
 {% block content %}
-<p class="headerText">Invoice - The way you want it!</p>
-
-<p>
-    <p class="gradientHeader">With invoicy you can</p>
-    <dl>
-        <dt>Create invoices for your clients</dt>
-        <dd>Spend your precious time doing your work not with invoice creation!</dd>
-        <dt>Create invoice templates</dt>
-        <dd>Create and re-use invoice templates. Lots of templates to get you started.</dd>
-        <dt>Easy reminders for generating invoices</dt>
-        <dd>Never forget to send your invoice again!</dd>
-        <dt>Much more ...</dt>
-        <dd>We are constantly improving invoicy. If you have any custom requests feel free to <a href="#">get in touch</a>.</dd>
-    </dl>
-</p>
-
+{% load cache %}
+	{% cache 3600 body_default %}
+		<p class="headerText">Invoice - The way you want it!</p>
+		<p>
+		    <p class="gradientHeader">With invoicy you can</p>
+		    <dl>
+		        <dt>Create invoices for your clients</dt>
+		        <dd>Spend your precious time doing your work not with invoice creation!</dd>
+		        <dt>Create invoice templates</dt>
+		        <dd>Create and re-use invoice templates. Lots of templates to get you started.</dd>
+		        <dt>Easy reminders for generating invoices</dt>
+		        <dd>Never forget to send your invoice again!</dd>
+		        <dt>Much more ...</dt>
+		        <dd>We are constantly improving invoicy. If you have any custom requests feel free to <a href="#">get in touch</a>.</dd>
+		    </dl>
+		</p>
+	{% endcache %}
 {% endblock %}
-
+{% cache 3600 sidebar_main %}
 {% block right_menu1 %}
     <h4>navigation</h4>
     <ul>
@@ -111,5 +112,6 @@
 
 {% block right_menu3 %}
     <h4>open source</h4>
-    <p>Not comfortable with hosting your data outside your environment? We understand that. You can download opensource version of invoicy from <a href="#">here</a>.</p>
+    <p>Not comfortable with hosting your data outside your environment? We understand that. You can download open source version of invoicy from <a href="#">here</a>.</p>
 {% endblock %}
+{% endcache %}
