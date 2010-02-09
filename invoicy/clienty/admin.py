@@ -54,6 +54,14 @@ class ContactAdmin(admin.ModelAdmin):
         if request.user:
             obj.user = request.user
         obj.save()
+    
+    # Django 1.1 feature.
+    # This filters out my company from getting displayed in the list.
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        if db_field.name == "company":
+            kwargs["queryset"] = Client.objects.filter(user=request.user, own_company=False)
+            return db_field.formfield(**kwargs)
+        return super(ContactAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
 
 class OwnCompanyAdmin(admin.ModelAdmin):
     list_display = ('short_name', 'name',)

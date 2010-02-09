@@ -14,6 +14,7 @@ except:
 
 urlpatterns = patterns('',
     (r'^' + urlprefix, include('guidy.urls')),
+    (r'^i18n/', include('django.conf.urls.i18n')),
     (r'^clienty/' + urlprefix, include('clienty.urls')),
     (r'^exporty/' + urlprefix, include('exporty.urls')),
     (r'^' + urlprefix + 'admin/', include(admin.site.urls)),

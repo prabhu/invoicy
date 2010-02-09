@@ -1,3 +1,4 @@
+{% load i18n %}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="{{ LANGUAGE_CODE }}" xml:lang="{{ LANGUAGE_CODE }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
 <head>
@@ -16,7 +17,7 @@
 {% if not is_popup %}
 <div id="head">
     <div id="title">
-        <div id="titleText">Invoicy</div>
+        <div id="titleText"><a href="/">{% trans "Invoicy" %}</a></div>
         <div id="logoutbar">
             {% block logoutbar %}{% endblock %}
         </div>
@@ -76,7 +77,7 @@
 </div>
 <div id="end_body"></div>
 <div id="footer">
-    &copy; Copyright Prabhu.
+    &copy; Copyright 2010 Prabhu Subramanian.
 </div>
 
 </body>

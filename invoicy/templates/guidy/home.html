@@ -1,16 +1,17 @@
 {% extends "default.html" %}
-
-{% block title %}Welcome to guidy{% endblock %}
+{% load i18n %}
+{% load tags %}
+{% block title %}{% trans "Welcome to guidy" %}{% endblock %}
 
 {% block content %}
 {% endblock %}
 
 {% block right_menu1 %}
-    <h4>quick links</h4>
+    <h4>{% trans "quick links" %}</h4>
     <ul>
-        <li><a href="#">pending invoices</a></li>
-        <li><a href="#">transactions</a></li>
-        <li><a href="#">reports</a></li>
+        <li><a href="#">{% trans "pending invoices" %}</a></li>
+        <li>{% link request "/admin/guidy/task/add/" "add task" %}</li>
+        <li>{% link request "/admin/guidy/task/" "all tasks" %}</li>
     </ul>
 {% endblock %}
 

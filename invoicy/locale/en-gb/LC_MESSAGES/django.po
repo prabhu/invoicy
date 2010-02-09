@@ -1,0 +1,162 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-02-09 22:29+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: templates/base.html:20
+msgid "Invoicy"
+msgstr ""
+
+#: templates/admin/clienty/change_form.html:18
+#: templates/admin/exporty/change_form.html:105
+#: templates/admin/guidy/change_form.html:18
+msgid "History"
+msgstr ""
+
+#: templates/admin/clienty/change_form.html:19
+#: templates/admin/exporty/change_form.html:106
+#: templates/admin/guidy/change_form.html:19
+msgid "View on site"
+msgstr ""
+
+#: templates/admin/clienty/change_form.html:43
+#: templates/admin/clienty/change_list.html:25
+#: templates/admin/exporty/change_form.html:125
+#: templates/admin/exporty/change_list.html:25
+#: templates/admin/guidy/change_form.html:38
+#: templates/admin/guidy/change_list.html:25
+msgid "Please correct the error below."
+msgid_plural "Please correct the errors below."
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/admin/clienty/change_list.html:36
+#: templates/admin/exporty/change_list.html:36
+#: templates/admin/guidy/change_list.html:36
+msgid "Filter"
+msgstr ""
+
+#: templates/admin/clienty/delete_confirmation.html:6
+#: templates/admin/exporty/delete_confirmation.html:6
+#: templates/admin/guidy/delete_confirmation.html:6
+#, python-format
+msgid ""
+"Deleting the %(object_name)s '%(escaped_object)s' would result in deleting "
+"related objects, but your account doesn't have permission to delete the "
+"following types of objects:"
+msgstr ""
+
+#: templates/admin/clienty/delete_confirmation.html:13
+#: templates/admin/exporty/delete_confirmation.html:13
+#: templates/admin/guidy/delete_confirmation.html:13
+#, python-format
+msgid ""
+"Are you sure you want to delete the %(object_name)s \"%(escaped_object)s\"? "
+"All of the following related items will be deleted:"
+msgstr ""
+
+#: templates/admin/clienty/delete_confirmation.html:18
+#: templates/admin/clienty/delete_selected_confirmation.html:24
+#: templates/admin/exporty/delete_confirmation.html:18
+#: templates/admin/exporty/delete_selected_confirmation.html:24
+#: templates/admin/guidy/delete_confirmation.html:18
+#: templates/admin/guidy/delete_selected_confirmation.html:24
+msgid "Yes, I'm sure"
+msgstr ""
+
+#: templates/admin/clienty/delete_selected_confirmation.html:6
+#: templates/admin/exporty/delete_selected_confirmation.html:6
+#: templates/admin/guidy/delete_selected_confirmation.html:6
+#, python-format
+msgid ""
+"Deleting the %(object_name)s would result in deleting related objects, but "
+"your account doesn't have permission to delete the following types of "
+"objects:"
+msgstr ""
+
+#: templates/admin/clienty/delete_selected_confirmation.html:13
+#: templates/admin/exporty/delete_selected_confirmation.html:13
+#: templates/admin/guidy/delete_selected_confirmation.html:13
+#, python-format
+msgid ""
+"Are you sure you want to delete the selected %(object_name)s objects? All of "
+"the following objects and it's related items will be deleted:"
+msgstr ""
+
+#: templates/admin/clienty/object_history.html:12
+#: templates/admin/exporty/object_history.html:12
+#: templates/admin/guidy/object_history.html:12
+msgid "Date/time"
+msgstr ""
+
+#: templates/admin/clienty/object_history.html:13
+#: templates/admin/exporty/object_history.html:13
+#: templates/admin/guidy/object_history.html:13
+msgid "User"
+msgstr ""
+
+#: templates/admin/clienty/object_history.html:14
+#: templates/admin/exporty/object_history.html:14
+#: templates/admin/guidy/object_history.html:14
+msgid "Action"
+msgstr ""
+
+#: templates/admin/clienty/object_history.html:20
+#: templates/admin/exporty/object_history.html:20
+#: templates/admin/guidy/object_history.html:20
+msgid "DATETIME_FORMAT"
+msgstr ""
+
+#: templates/admin/clienty/object_history.html:28
+#: templates/admin/exporty/object_history.html:28
+#: templates/admin/guidy/object_history.html:28
+msgid ""
+"This object doesn't have a change history. It probably wasn't added via this "
+"admin site."
+msgstr ""
+
+#: templates/clienty/home.html:3
+msgid "Welcome to clienty"
+msgstr ""
+
+#: templates/clienty/home.html:9 templates/guidy/home.html:10
+msgid "quick links"
+msgstr ""
+
+#: templates/clienty/home.html:11
+msgid "add client"
+msgstr ""
+
+#: templates/clienty/home.html:12
+msgid "add contact"
+msgstr ""
+
+#: templates/guidy/home.html:4
+msgid "Welcome to guidy"
+msgstr ""
+
+#: templates/guidy/home.html:12
+msgid "pending invoices"
+msgstr ""
+
+#: templates/guidy/home.html:13
+msgid "add task"
+msgstr ""
+
+#: templates/guidy/home.html:14
+msgid "all tasks"
+msgstr ""

@@ -9,6 +9,7 @@ from django.views.decorators.cache import cache_page
 
 from common.utils.decorators import group_create, data_required, rate_limit
 from clienty.models import OwnCompany
+from guidy.models import Task
 
 def guidy_default(request, **args):
     """
@@ -23,6 +24,7 @@ def guidy_default(request, **args):
 
 @login_required(redirect_field_name='r')
 @data_required(model=OwnCompany, failure_view='/admin/clienty/owncompany/add/', user_filter=True)
+@data_required(model=Task, failure_view='/admin/guidy/task/add/', user_filter=True)
 def guidy_home(request, **args):
     """
     Handle request to the home page after login.
@@ -31,7 +33,7 @@ def guidy_home(request, **args):
                               context_instance=RequestContext(request))
 
 @rate_limit(time=180)
-@group_create(name = 'invoicy_users', models_list=['client', 'contact', 'owncompany', 'invoicetemplate'], permission_list=['add', 'change', 'delete'])
+@group_create(name = 'invoicy_users', models_list=['client', 'contact', 'owncompany', 'invoicetemplate', 'task'], permission_list=['add', 'change', 'delete'])
 def create_user(request, username, password):
     """
     Method to create a user with proper permissions

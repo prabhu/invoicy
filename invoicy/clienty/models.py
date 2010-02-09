@@ -21,14 +21,14 @@ class Client(models.Model):
     fax = models.CharField(max_length=25, null=True, blank=True)
     user = models.ForeignKey(User, help_text="Owner user")
     own_company = models.BooleanField(verbose_name="Own Company", help_text="Is this your own company?")
-
+    
     def __unicode__(self):
         return u'%s %s' %(self.ref, self.name)
-
+    
     class Meta:
-        permissions = (("can_generate_invoice", "Can generate invoice for the client"),)                       
+        permissions = (("can_generate_invoice", "Can generate invoice for the client"),)
         ordering = ['name']
-
+    
     def save(self, **args):
         user = get_current_user()
         if user:
@@ -52,7 +52,7 @@ class Contact(models.Model):
     
     def __unicode__(self):
         return u'%s %s' %(self.first_name, self.last_name)
-
+    
     def save(self, **args):
         user = get_current_user()
         if user:

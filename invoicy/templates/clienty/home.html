@@ -1,14 +1,16 @@
 {% extends "default.html" %}
-{% block title %}Welcome to clienty{% endblock %}
+{% load i18n %}
+{% load tags %}
+{% block title %}{% trans "Welcome to clienty" %}{% endblock %}
 
 {% block content %}
 {% endblock %}
 
 {% block right_menu1 %}
-    <h4>quick links</h4>
+    <h4>{% trans "quick links" %}</h4>
     <ul>
-        <li><a href="/admin/clienty/client/add/" {% ifequal title "Add client" %} class='current_link'{% endifequal %}>add client</a></li>
-        <li><a href="/admin/clienty/contact/add/" {% ifequal title "Add contact" %} class='current_link'{% endifequal %}>add contact</a></li>
+        <li>{% link request "/admin/clienty/client/add/" "add client" %}</li>
+        <li>{% link request "/admin/clienty/contact/add/" "add contact" %}</li>
         <li><a href="#">past invoices</a></li>
         <li><a href="#">reports</a></li>
     </ul>
