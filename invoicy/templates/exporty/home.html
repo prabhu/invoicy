@@ -1,4 +1,5 @@
 {% extends "default.html" %}
+{% load i18n tags %}
 {% block title %}Welcome to exporty{% endblock %}
 
 {% block content %}
@@ -7,9 +8,8 @@
 {% block right_menu1 %}
     <h4>quick links</h4>
     <ul>
-        <li><a href="/admin/exporty/invoice/add/">create invoice</a></li>
-        <li><a href="/admin/exporty/invoicetemplate/">invoice templates</a></li>
-        <li><a href="/admin/exporty/invoice/">all invoices</a></li>
+        <li>{% link request "/admin/exporty/invoice/add/" "create invoice" %}</li>
+        <li>{% link request "/admin/exporty/invoice/" "past invoices" %}</li>
     </ul>
 {% endblock %}
 

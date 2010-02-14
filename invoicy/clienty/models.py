@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from django.db import models
 from django.contrib.auth.models import User, Group
 from common.utils.middleware import get_current_user
@@ -6,6 +8,13 @@ class Client(models.Model):
     """
     Model representing a customer.
     """
+    CURRENCIES = (
+        ('£', 'Great Britain Pound'),
+        ('$', 'United States Dollars'),
+        ('€', 'Euro'),
+        ('Rs', 'Indian Rupees'),
+    )
+    
     ref = models.CharField(max_length=15, verbose_name='Client Ref#', help_text="Unique reference number for this client. Eg: CL123", unique=True)
     short_name = models.CharField(max_length=20, null=True, blank=True)
     name = models.CharField(max_length=100, unique=True)
@@ -19,6 +28,7 @@ class Client(models.Model):
     website = models.URLField(null=True, verify_exists=True, max_length=100, verbose_name="Website", blank=True)
     phone = models.CharField(max_length=25, null=True, blank=True)
     fax = models.CharField(max_length=25, null=True, blank=True)
+    currency = models.CharField(max_length=3, choices=CURRENCIES, default='£')
     user = models.ForeignKey(User, help_text="Owner user")
     own_company = models.BooleanField(verbose_name="Own Company", help_text="Is this your own company?")
     
@@ -62,9 +72,8 @@ class Contact(models.Model):
 class OwnCompany(Client):
     """
     Proxy model representing your own company.
-    """
+    """    
     class Meta:
         proxy = True
         verbose_name = 'My company'
         verbose_name_plural = 'My company'
-        

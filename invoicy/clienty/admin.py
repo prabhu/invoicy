@@ -2,10 +2,10 @@ from django.contrib import admin
 from clienty.models import Client, Contact, OwnCompany
 
 class ClientAdmin(admin.ModelAdmin):
-    list_display = ('ref', 'short_name', 'name', 'phone')
+    list_display = ('ref', 'short_name', 'name')
     list_display_links = ('ref', 'short_name', 'name')
     search_fields = ['ref', 'name', 'short_name']
-    exclude = ('user', 'own_company', )
+    exclude = ('user', 'own_company', 'currency',)
     fieldsets = (
         (None, {
             'fields' : ('ref', 'short_name', 'name')

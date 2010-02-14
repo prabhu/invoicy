@@ -26,11 +26,7 @@ body {
     line-height: 30px;
     float: left;
     width: 200px;
-}
-
-#titleText a {
-    color: #FFF;
-    text-decoration: none;
+    background: url(../images/invoicy-logo.png) no-repeat top left;
 }
 
 #body_wrapper {
@@ -342,7 +338,6 @@ pre {
 a {
     color: #84B0D7;
     text-decoration: none;
-    border-bottom: 1px dashed;
     padding-bottom: 0px;
 }
 
