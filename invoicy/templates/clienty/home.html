@@ -9,8 +9,12 @@
 {% block right_menu1 %}
     <h4>{% trans "quick links" %}</h4>
     <ul>
-        <li>{% link request "/admin/clienty/client/add/" "add client" %}</li>
-        <li>{% link request "/admin/clienty/contact/add/" "add contact" %}</li>
+        <li><span>client</span>
+            {% link request "/admin/clienty/client/" "all clients" %}
+            {% link request "/admin/clienty/client/add/" "add client" %}</li>
+        <li><span>contact</span>
+            {% link request "/admin/clienty/contact/" "all contacts" %}
+            {% link request "/admin/clienty/contact/add/" "add contact" %}</li>
         <li><a href="#">past invoices</a></li>
         <li><a href="#">reports</a></li>
     </ul>

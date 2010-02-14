@@ -17,18 +17,29 @@
                     });
 
                     c.onRenderMenu.add(function(c, m) {
-                        var sub1;
-                        sub1 = m.addMenu({title : 'Client Details'});
-                        sub1.add({title : 'Client Name & Address', onclick : function() {
+                        var cmenu, tplmenu;
+                        // Client details menu.
+                        cmenu = m.addMenu({title : 'Client Details'});
+                        cmenu.add({title : 'Client Name & Address', onclick : function() {
                             tinyMCE.activeEditor.execCommand('mceInsertContent', false, '$ClientNameAddress');
                         }});
 
-                        sub1.add({title : 'Client Name', onclick : function() {
+                        cmenu.add({title : 'Client Name', onclick : function() {
                             tinyMCE.activeEditor.execCommand('mceInsertContent', false, '$ClientName');
+                        }});
+
+                        m.add({title : 'Self Name', onclick : function() {
+                            tinyMCE.activeEditor.execCommand('mceInsertContent', false, '$SelfName');
                         }});
 
                         m.add({title : 'Self Name & Address', onclick : function() {
                             tinyMCE.activeEditor.execCommand('mceInsertContent', false, '$SelfNameAddress');
+                        }});
+                        
+                        // Invoice Data Menu
+                        tplmenu = m.addMenu({title : 'Invoice Data'});
+                        tplmenu.add({title : 'Tasks as Table', onclick : function() {
+                            tinyMCE.activeEditor.execCommand('mceInsertRawHTML', false, '$TasksAsTable');
                         }});
 
                         m.add({title : 'Date & Location', onclick : function() {

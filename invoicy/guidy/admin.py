@@ -2,11 +2,27 @@ from django.contrib import admin
 from guidy.models import Task
 from clienty.models import Client
 
+def make_delivered(modeladmin, request, queryset):
+    rows_updated = queryset.update(status='delivered')
+    modeladmin.message_user(request, "%s tasks successfully marked as delivered."%rows_updated)
+make_delivered.short_description = "Mark tasks as delivered"
+
+def make_active(modeladmin, request, queryset):
+    rows_updated = queryset.update(status='active')
+    modeladmin.message_user(request, "%s tasks successfully marked as active."%rows_updated)
+make_active.short_description = "Mark tasks as active"
+
+def make_complete(modeladmin, request, queryset):
+    rows_updated = queryset.update(status='complete')
+    modeladmin.message_user(request, "%s tasks successfully marked as complete."%rows_updated)    
+make_complete.short_description = "Mark tasks as complete"
+
 class TaskAdmin(admin.ModelAdmin):
-    list_display = ('name', 'description', 'rate')
+    list_display = ('name', 'description', 'rate', 'status')
     list_display_links = ('name',)
     search_fields = ['name', 'description']
     exclude = ('user', )
+    actions = [make_delivered, make_complete, make_active,]
     
     def queryset(self, request):
         """

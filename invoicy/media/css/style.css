@@ -28,6 +28,11 @@ body {
     width: 200px;
 }
 
+#titleText a {
+    color: #FFF;
+    text-decoration: none;
+}
+
 #body_wrapper {
     background: url(../images/body_repeat.jpg) repeat-y top left;
     margin: 0px auto;
@@ -196,6 +201,14 @@ body {
     float: left;
     text-align: center;
     font-size: 12px;
+}
+
+#menu ul li span {
+    color: #fff;
+    background-color: transparent;
+    font-weight: bold;
+    display: block;
+    border-style: none;
 }
 
 #menu ul li a {
